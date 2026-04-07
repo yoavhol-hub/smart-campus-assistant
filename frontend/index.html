@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Campus Assistant</title>
+  <meta name="description" content="AI-powered campus assistant for schedules, locations, student services, and technical support." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="#hero" aria-label="Smart Campus Assistant home">
+        <span class="brand-mark">SC</span>
+        <span class="brand-copy">
+          <strong>Smart Campus Assistant</strong>
+          <small>AI campus support experience</small>
+        </span>
+      </a>
+
+      <nav class="topbar-actions">
+        <a class="ghost-link" href="#assistant-card">Ask the assistant</a>
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle dark mode">
+          <span class="theme-toggle__sun">☀</span>
+          <span class="theme-toggle__moon">☾</span>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <section id="hero" class="hero">
+        <div class="hero-backdrop"></div>
+        <div class="hero-content">
+          <div class="eyebrow">FastAPI + OpenAI + Retrieval</div>
+          <h1>Campus answers that feel instant, polished, and reliable.</h1>
+          <p class="hero-text">
+            A lightweight web experience for students to ask about rooms, schedules, student services,
+            and technical support in natural language.
+          </p>
+
+          <div class="hero-pills">
+            <span>Natural language Q&amp;A</span>
+            <span>Fallback-aware UX</span>
+            <span>Modern student-facing design</span>
+          </div>
+
+          <div class="hero-cta-row">
+            <a class="primary-cta" href="#assistant-card">Try live assistant</a>
+            <a class="secondary-cta" href="#feature-grid">See product highlights</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-grid">
+        <aside class="info-rail">
+          <div class="glass-card mini-card">
+            <span class="section-label">Why this UI</span>
+            <h2>Built for demo impact</h2>
+            <p>
+              Clean hierarchy, high contrast, campus imagery, strong empty states, and clear feedback during AI processing.
+            </p>
+          </div>
+
+          <div id="feature-grid" class="feature-grid">
+            <article class="glass-card feature-card">
+              <span class="feature-icon">📅</span>
+              <h3>Schedules</h3>
+              <p>Library hours, office availability, registration, and campus services.</p>
+            </article>
+            <article class="glass-card feature-card">
+              <span class="feature-icon">📍</span>
+              <h3>Locations</h3>
+              <p>Rooms, facilities, clinics, student support offices, and practical directions.</p>
+            </article>
+            <article class="glass-card feature-card">
+              <span class="feature-icon">💻</span>
+              <h3>Technical support</h3>
+              <p>Wi-Fi, password reset, locked accounts, LMS access, and printing help.</p>
+            </article>
+          </div>
+        </aside>
+
+        <section id="assistant-card" class="assistant-column">
+          <div class="glass-card assistant-card">
+            <div class="assistant-card__header">
+              <div>
+                <span class="section-label">Student assistant</span>
+                <h2>Ask anything campus-related</h2>
+                <p>Designed for quick questions, reassuring feedback, and elegant fallback behavior.</p>
+              </div>
+              <div class="status-chip online">
+                <span class="status-dot"></span>
+                API ready
+              </div>
+            </div>
+
+            <div class="prompt-suggestions" aria-label="Suggested questions">
+              <button class="prompt-chip" type="button" data-prompt="Where is the medical clinic?">Where is the medical clinic?</button>
+              <button class="prompt-chip" type="button" data-prompt="What time does the library open?">What time does the library open?</button>
+              <button class="prompt-chip" type="button" data-prompt="How do I reset my password?">How do I reset my password?</button>
+              <button class="prompt-chip" type="button" data-prompt="Where can I print documents on campus?">Where can I print documents on campus?</button>
+            </div>
+
+            <form id="askForm" class="assistant-form">
+              <label class="sr-only" for="questionInput">Ask a campus question</label>
+              <div class="textarea-shell">
+                <textarea
+                  id="questionInput"
+                  name="question"
+                  rows="4"
+                  placeholder="Ask about schedules, rooms, student services, technical issues, and more..."
+                  maxlength="500"
+                ></textarea>
+                <div class="textarea-footer">
+                  <span id="characterCounter">0 / 500</span>
+                  <span>Press Enter + Shift for new line</span>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button id="submitButton" class="submit-button" type="submit">
+                  <span class="button-text">Get answer</span>
+                  <span class="button-loader" aria-hidden="true"></span>
+                </button>
+                <button id="clearButton" class="clear-button" type="button">Clear</button>
+              </div>
+            </form>
+
+            <div id="statusArea" class="status-area" aria-live="polite"></div>
+
+            <section id="responsePanel" class="response-panel empty" aria-live="polite">
+              <div class="empty-state">
+                <div class="empty-state__icon">🎓</div>
+                <h3>Your answer will appear here</h3>
+                <p>Ask a campus-related question to see the assistant respond with category and answer details.</p>
+              </div>
+            </section>
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
