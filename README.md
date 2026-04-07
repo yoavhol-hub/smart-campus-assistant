@@ -123,6 +123,6 @@ Retrieval-first approach improves reliability
 Docker simplifies environment setup
 Compose enables multi-service orchestration
 AI systems require fallback strategies
-👨‍💻 Author
 
+👨‍💻 Author
 Yoav Holenberg
