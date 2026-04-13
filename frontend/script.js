@@ -1,4 +1,5 @@
-const API_URL = "http://127.0.0.1:8000/ask";
+const API_BASE_URL = window.APP_CONFIG?.API_BASE_URL || "http://127.0.0.1:8000";
+const API_URL = `${API_BASE_URL}/ask`;
 
 const form = document.getElementById("askForm");
 const input = document.getElementById("questionInput");
@@ -34,7 +35,9 @@ function updateCounter() {
 function setLoadingState(isLoading) {
   submitButton.disabled = isLoading;
   submitButton.classList.toggle("is-loading", isLoading);
-  statusArea.textContent = isLoading ? "Searching campus data and generating a response..." : "";
+  statusArea.textContent = isLoading
+    ? "Searching campus data and generating a response..."
+    : "";
 }
 
 function escapeHtml(text) {
@@ -60,9 +63,11 @@ function renderResponse(payload) {
         <p class="answer-card__headline">Assistant response</p>
         <div class="answer-card__meta">
           ${createMetaPill(`Category: ${category}`)}
-          ${usedFallback
-            ? createMetaPill("Fallback response used", "fallback")
-            : createMetaPill("Retrieved with confidence", "ok")}
+          ${
+            usedFallback
+              ? createMetaPill("Fallback response used", "fallback")
+              : createMetaPill("Retrieved with confidence", "ok")
+          }
         </div>
       </div>
 
@@ -113,7 +118,7 @@ async function askCampusAssistant(question) {
   const response = await fetch(API_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ question })
+    body: JSON.stringify({ question }),
   });
 
   if (!response.ok) {
@@ -138,7 +143,9 @@ form.addEventListener("submit", async (event) => {
     const payload = await askCampusAssistant(question);
     renderResponse(payload);
   } catch (error) {
-    renderError("The frontend could not reach the backend API. Make sure FastAPI is running on http://127.0.0.1:8000.");
+    renderError(
+      `The frontend could not reach the backend API. Make sure FastAPI is running on ${API_BASE_URL}.`
+    );
   } finally {
     setLoadingState(false);
   }

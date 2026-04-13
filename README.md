@@ -1,128 +1,144 @@
-🎓 Smart Campus Assistant
+# 🎓 Smart Campus Assistant
 
-📌 Overview
-
-Smart Campus Assistant is an AI-powered web application that allows students to ask questions about campus-related information such as schedules, locations, and technical services.
+## 📌 Overview
+Smart Campus Assistant is an AI-powered full-stack web application that enables students to ask questions about campus-related information such as schedules, locations, and technical services.
 
 The system combines:
+- Structured campus data (database)
+- Rule-based classification
+- Retrieval and scoring logic
+- AI-generated responses
 
-structured campus data (database)
-rule-based classification
-retrieval and scoring logic
-AI-generated responses
+This project demonstrates a complete end-to-end system including backend, frontend, and DevOps practices.
 
-The project demonstrates a full-stack system with backend, frontend, and DevOps practices.
+---
 
-🧠 Architecture
+## 🧠 Architecture
 
 The system follows a client-server architecture:
 
+```text
 Frontend → Backend (FastAPI) → Retrieval → AI → Response
-
 🔹 Frontend
 Simple UI for user interaction
-Sends questions to backend API
-Displays answers and system feedback
-
+Sends questions to the backend API
+Displays answers and metadata
 🔹 Backend (FastAPI)
 Receives user questions (POST /ask)
-Classifies question (schedule / general / technical / unknown)
-Retrieves relevant data from database
+Classifies questions (schedule, technical, general)
+Retrieves relevant data from the database
 Applies scoring logic
-Uses AI to generate final answer
-Includes fallback mechanism
-
+Uses AI to generate answers
+Includes fallback mechanisms
+Structured with router-based architecture
 🔹 Database
 SQLite database
 Pre-seeded with campus-related data
 Organized by categories
-
 ⚙️ Features
-
 Question classification
 Retrieval-based answer generation
 Scoring mechanism (topic + content weighting)
 AI integration
 Fallback handling
-Unit testing
+Input validation with Pydantic
+Structured logging
+Unit and API testing with pytest
 Docker containerization
 Docker Compose orchestration
 🚀 Running the Project
-🔹 Option 1 — Local (without Docker)
-Backend
+🔹 Option 1 — Local Setup
+1. Clone the repository
+git clone <your-repo-url>
+cd smart_campus_assistant
+2. Backend setup
 cd backend
+pip install -r requirements.txt
+
+Create a .env file inside the backend folder:
+
+OPENAI_API_KEY=your_api_key_here
+OPENAI_MODEL=gpt-4.1
+CORS_ORIGINS=http://127.0.0.1:5500,http://localhost:5500
+
+Run the backend:
+
 uvicorn app.main:app --reload
-Frontend
-cd frontend
+3. Frontend setup
+cd ../frontend
 python -m http.server 5500
-🔹 Option 2 — Docker (Recommended)
-
-Run the entire system with one command:
-
-docker compose up --build
 🌐 Access the Application
-Frontend:
-http://127.0.0.1:5500
-Backend Docs (Swagger):
-http://127.0.0.1:8000/docs
+Frontend: http://127.0.0.1:5500
+Backend Docs (Swagger): http://127.0.0.1:8000/docs
 🧪 Running Tests
 cd backend
-python -m pytest
-🧩 Key Design Decision
+pytest
 
-A major improvement in the system:
+The test suite includes:
 
-Retrieval is not strictly dependent on classification.
+API tests
+Validation tests
+Classifier tests
+Fallback tests
+🧩 Key Design Decisions
+🔹 Retrieval is not strictly dependent on classification
 
-If no results are found in the predicted category, the system performs a broader search across the entire dataset.
+If no results are found in the predicted category, the system performs a broader search across all categories.
 
 This improves:
 
-robustness
-accuracy
-handling of real-world user input
+Robustness
+Accuracy
+Handling of real-world user input
 🐳 Docker & DevOps
 
-The project was containerized using Docker:
+Run the entire system with Docker Compose:
 
-Separate Docker images for backend and frontend
-Services orchestrated using Docker Compose
-Entire system runs with a single command
-
-Benefits:
-
-consistent environment
-easy setup
-reproducible execution
-closer to real-world deployment
+docker compose up --build
+Benefits
+Consistent environment
+Easy setup
+Reproducible execution
+Closer to real-world deployment
+🧠 Improvements Made Based on Review Feedback
+Centralized configuration using .env and config.py
+Removed hardcoded frontend API URL
+Added structured logging instead of print statements
+Implemented input validation with Pydantic
+Refactored the backend into a router-based architecture
+Added broader backend and API test coverage
+Improved setup and run documentation
 📂 Project Structure
 smart_campus_assistant/
 │
 ├── backend/
 │   ├── app/
+│   │   ├── data/
+│   │   ├── routers/
+│   │   ├── services/
+│   │   ├── config.py
+│   │   ├── schemas.py
+│   │   └── main.py
 │   ├── tests/
+│   ├── .env.example
 │   └── Dockerfile
 │
 ├── frontend/
 │   ├── index.html
 │   ├── script.js
+│   ├── config.js
 │   ├── style.css
 │   └── Dockerfile
 │
 ├── docker-compose.yml
 └── README.md
 🎯 Future Improvements
-Semantic search (embeddings)
-Better scoring algorithm
+Semantic search using embeddings
+More advanced scoring algorithm
 React-based frontend
-Deployment to cloud
-Authentication
-🧠 Key Takeaways
-Clean separation between frontend and backend
-Retrieval-first approach improves reliability
-Docker simplifies environment setup
-Compose enables multi-service orchestration
-AI systems require fallback strategies
+<<<<<<< HEAD
+
+>>>>>>> abf2cf7 (Refactor backend architecture, add validation and testing, and improve frontend configuration and README)
 
 👨‍💻 Author
 Yoav Holenberg

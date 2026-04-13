@@ -1,16 +1,11 @@
-import os
-from dotenv import load_dotenv
+import logging
+
 from openai import OpenAI
+from app.config import settings
 
-load_dotenv()
+logger = logging.getLogger(__name__)
 
-api_key = os.getenv("OPENAI_API_KEY")
-model = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
-
-print("OPENAI_API_KEY loaded:", bool(api_key))
-print("OPENAI_MODEL loaded:", model)
-
-client = OpenAI(api_key=api_key)
+client = OpenAI(api_key=settings.openai_api_key)
 
 
 def generate_ai_answer(question: str, category: str, context: str) -> str:
@@ -29,11 +24,13 @@ Context:
 """.strip()
 
     response = client.responses.create(
-        model=model,
+        model=settings.openai_model,
         input=[
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": question},
         ],
     )
 
-    return response.output_text.strip()
+    answer = response.output_text.strip()
+    logger.info("AI answer generated successfully for category '%s'", category)
+    return answer
