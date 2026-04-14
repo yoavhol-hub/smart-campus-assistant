@@ -1,0 +1,153 @@
+# 📅 Daily Log – Smart Campus Assistant
+
+## 📌 Overview
+Development of the Smart Campus Assistant was carried out over multiple sessions, often intermittently due to reserve duty obligations.
+
+Despite the constraints, the project progressed in a structured and modular way, focusing on building a complete full-stack system with backend, frontend, AI integration, and deployment readiness.
+
+---
+
+## 🧠 Development Timeline
+
+### 🔹 Day 1 – Project Planning & Design
+- Defined project idea: AI-powered campus assistant
+- Identified key components:
+  - Backend (FastAPI)
+  - Frontend (Web UI)
+  - AI integration
+  - Database (SQLite)
+- Planned system flow:  
+  `User → API → Classification → Retrieval → AI → Response`
+
+---
+
+### 🔹 Day 2 – Backend Setup
+- Initialized FastAPI project structure
+- Created main application entry point
+- Set up database connection (SQLite)
+- Implemented initial API endpoint (`/ask`)
+- Built basic request-response flow
+
+---
+
+### 🔹 Day 3 – Classification Logic
+- Implemented rule-based classifier
+- Defined categories:
+  - `schedule`
+  - `technical`
+  - `general`
+- Tested classification accuracy on sample questions
+
+---
+
+### 🔹 Day 4 – Retrieval & AI Integration
+- Implemented retrieval logic based on category
+- Added scoring mechanism for relevance
+- Integrated OpenAI API for answer generation
+- Introduced fallback mechanism when no data is found
+- Improved response structure
+
+---
+
+### 🔹 Day 5 – Frontend Development
+- Built simple UI using HTML, CSS, and JavaScript
+- Connected frontend to backend API (`/ask`)
+- Implemented:
+  - Input field
+  - Submit button
+  - Response display
+- Added UI enhancements (status messages, loading state)
+
+---
+
+### 🔹 Day 6 – Debugging & Improvements
+- Fixed API communication issues between frontend and backend
+- Improved error handling
+- Refined fallback responses
+- Handled edge cases (empty input, unclear questions)
+
+---
+
+### 🔹 Day 7 – Validation & Logging
+- Added input validation using Pydantic
+- Enforced:
+  - Minimum and maximum question length
+  - Whitespace cleaning
+- Replaced `print` statements with structured logging
+- Improved backend robustness
+
+---
+
+### 🔹 Day 8 – Refactoring & Architecture
+- Refactored backend into router-based architecture
+- Separated concerns:
+  - routers
+  - services
+  - schemas
+- Improved maintainability and scalability
+
+---
+
+### 🔹 Day 9 – Testing
+- Added unit and API tests using pytest
+- Covered:
+  - `/ask` endpoint
+  - validation cases
+  - classifier logic
+  - fallback behavior
+- Introduced mocking for AI responses
+- Achieved stable and repeatable test results
+
+---
+
+### 🔹 Day 10 – Frontend Configuration Fixes
+- Removed hardcoded API URL
+- Introduced `config.js` for environment-based configuration
+- Fixed path issues and debugging frontend loading errors
+- Ensured proper communication with backend
+
+---
+
+### 🔹 Day 11 – Documentation & Finalization
+- Wrote comprehensive README file
+- Added:
+  - setup instructions
+  - architecture explanation
+  - features list
+- Created AI experiments documentation:
+  - test cases
+  - system prompt comparison
+  - failure analysis
+- Prepared project for final submission
+
+---
+
+## ⚠️ Development Constraints
+
+Due to reserve duty, development was performed in short, non-continuous sessions.
+
+This required:
+- Modular design
+- Clear separation of components
+- Incremental progress across multiple days
+
+---
+
+## 🧩 Key Takeaways
+
+- Full-stack development requires strong coordination between frontend and backend
+- Prompt engineering significantly affects AI output quality
+- Testing and validation are essential for system reliability
+- Debugging real-world issues (API, paths, config) is a critical skill
+- Modular architecture improves maintainability under constrained development conditions
+
+---
+
+## 🚀 Final Status
+
+- Fully working full-stack application ✔️
+- AI-powered response generation ✔️
+- Backend architecture structured ✔️
+- Frontend integrated ✔️
+- Tests implemented ✔️
+- Documentation completed ✔️
