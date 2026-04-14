@@ -130,6 +130,11 @@ smart_campus_assistant/
 │   ├── style.css
 │   └── Dockerfile
 │
+├── docs/
+│   ├── AI_Experiments.md
+│   ├── DailyLog.docx
+│   └── SRS.docx
+│
 ├── docker-compose.yml
 └── README.md
 🎯 Future Improvements
